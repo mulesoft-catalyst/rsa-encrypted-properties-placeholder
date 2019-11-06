@@ -1,0 +1,26 @@
+{
+  "minMuleVersion": "4.1.2",
+  "requiredProduct": "MULE",
+  "name": "truststore-utility",
+  "extensionModelLoaderDescriptor": {
+    "id": "crafted",
+    "attributes": {
+      "type": "com.mulesoft.ps.apac.sdk.encrypted.properties.api.EncryptedPropertiesExtensionLoadingDelegate"
+    }
+  },
+  "classLoaderModelLoaderDescriptor": {
+    "id": "mule",
+    "attributes": {
+      "exportedPackages": [
+        "com.mulesoft.ps.apac.sdk.encrypted.properties.api"
+      ],
+      "exportedResources": [
+        "META-INF/services/org.mule.runtime.config.api.dsl.model.properties.ConfigurationPropertiesProviderFactory"
+      ]
+    }
+  },
+  "bundleDescriptorLoader": {
+    "id": "mule",
+    "attributes": {}
+  }
+}

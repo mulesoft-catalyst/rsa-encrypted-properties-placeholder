@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:rsa-encryption-utility="http://www.mulesoft.org/schema/mule/rsa-encryption-utility" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/rsa-encryption-utility http://www.mulesoft.org/schema/mule/rsa-encryption-utility/current/mule-rsa-encryption-utility.xsd">
+	<rsa-encryption-utility:config name="RSA_Encryption_Utility_Config" doc:name="RSA Encryption Utility Config" doc:id="8e6544a0-523e-4610-beb5-c7b8b14344a8" file="rsa-encrypted.properties" keystorepath="keystore/keystore.jks" keystorepass="s3cr3t" keypass="s3cr3t" keyAlias="mykey" />
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="86d936cb-2d1f-45ed-ae7c-512fef954413" basePath="/api" >
+		<http:listener-connection host="0.0.0.0" port="8071" />
+	</http:listener-config>
+	<flow name="rsa-encrypted-demoFlow" doc:id="7331c274-4fa1-4d31-81ff-77b92685cfb4" >
+		<http:listener doc:name="Listener" doc:id="cf346145-4449-4eab-b279-d71fb0d4b800" config-ref="HTTP_Listener_config" path="/encrypt"/>
+		<set-payload value="${rsaEncrypt::test.message}" doc:name="Set Payload" doc:id="5cf2e793-2e96-4f1d-9086-4e831a185542" />
+	</flow>
+</mule>
